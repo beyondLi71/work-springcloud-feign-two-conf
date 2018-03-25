@@ -2,3 +2,56 @@
 server:
   port: 9003
 title: develop-beyondLi-two-default
+#=================================默认配置结束，不用修改===================
+
+spring:
+  #zipkin的采样率
+#  sleuth:
+#    sampler:
+#      percentage: 1.0
+#  #rabbitmq配置
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#=================================数据库配置开始===================
+  #jpa配置
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  #数据源配置
+  datasource:
+    #执行的建表语句
+    schema: classpath:schema.sql
+    #执行的sql语句
+    data: classpath:data.sql
+    #主配置
+    url: jdbc:mysql://58.87.75.119:3306/user?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Maxrocky5721
+    driver-class-name: com.mysql.jdbc.Driver
+    #其它配置
+    platform: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 300
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,slf4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#=================================数据库配置结束===================
+
+#==============================mybatis驼峰式类名自动映射数据库字段=============================
+mybatis:
+  configuration:
+     map-underscore-to-camel-case: true
